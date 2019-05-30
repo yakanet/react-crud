@@ -1,4 +1,3 @@
-import * as Knex from 'knex';
 import knexInstance from '../knex';
 import {Contact} from '../model/contact.model';
 

@@ -1,6 +1,13 @@
 export interface ITodo {
-    id: number;
+    id: number | undefined;
     name: string;
     archived: boolean;
-    dueDate: Date;
+}
+
+export function emptyTodo(): ITodo {
+    return {
+        id: undefined,
+        name: '',
+        archived: false
+    }
 }

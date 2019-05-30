@@ -1,6 +1,13 @@
 export interface IContact {
-    id: string;
+    id: number | undefined;
     name: string;
     email: string;
-    creationDate: Date;
+}
+
+export function emptyContact(): IContact {
+    return {
+        id: undefined,
+        name: '',
+        email: ''
+    }
 }

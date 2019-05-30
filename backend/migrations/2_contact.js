@@ -7,7 +7,6 @@ exports.up = function(knex, Promise) {
         table.increments();
         table.string('name').notNullable().unique();
         table.string('email').notNullable();
-        table.dateTime('creationDate').notNullable();
     });
 };
 

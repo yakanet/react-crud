@@ -4,7 +4,6 @@ export class Todo {
         public id?: number,
         public name?: string,
         public archived?: boolean,
-        public dueDate?: Date
     ) {}
 
     toString() {
