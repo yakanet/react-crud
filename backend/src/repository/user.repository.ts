@@ -8,30 +8,12 @@ import { User } from "../model/user.model";
  * Persistence manager for user entity
  */
 export class UserRepository {
-
-    private db: Knex;
+    private readonly db = knexInstance;
 
     /**
      * @param {Knex} db [optional] Knex Database instance
      */
-    constructor(db = knexInstance) {
-        this.db = db;
-    }
-
-    /**
-     * Get database instance
-     * @returns {Knex}
-     */
-    getDb(): Knex {
-        return this.db;
-    }
-
-    /**
-     * Destroys database connection
-     * @returns {Promise<void>}
-     */
-    closeConnection(): Promise<void> {
-        return this.db.destroy();
+    constructor() {
     }
 
     /**
@@ -41,24 +23,6 @@ export class UserRepository {
      */
     findOne(id: number): Promise<User> {
         return this.db('users').select('*').where({id}).first();
-    }
-
-    /**
-     * Finds user by name
-     * @param {string} name
-     * @returns {Promise<User>}
-     */
-    findByName(name: string): Promise<User> {
-        return this.db('users').select('*').where({name}).first();
-    }
-
-    /**
-     * Find user by email
-     * @param {string} email
-     * @returns {Promise<User>}
-     */
-    findByEmail(email: string): Promise<User> {
-        return this.db('users').select('*').where({email}).first();
     }
 
     /**
@@ -102,5 +66,4 @@ export class UserRepository {
     remove(id: number): Promise<number> {
        return this.db('users').where({id}).del();
     }
-
 }
