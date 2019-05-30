@@ -1,4 +1,7 @@
 {
   "extends": ["tslint-react",  "tslint-react-hooks"],
-  "linterOptions": {"exclude": ["config/**/*.js", "node_modules/**/*.ts", "coverage/lcov-report/*.js"]}
+  "linterOptions": {"exclude": ["config/**/*.js", "node_modules/**/*.ts", "coverage/lcov-report/*.js"]},
+  "rules": {
+   "jsx-no-multiline-js": false
+  }
 }
