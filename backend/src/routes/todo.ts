@@ -1,26 +1,26 @@
 import * as express from 'express';
-import { UserRepository } from '../repository/user.repository';
+import { TodoRepository } from '../repository/todo.repository';
 
-const userRepository = new UserRepository();
+const todoRepository = new TodoRepository();
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const result = await userRepository.findAll();
+    const result = await todoRepository.findAll();
     res.json(result);
 });
 
 router.post('/', async (req, res) => {
-    const result = await userRepository.add(req.body);
+    const result = await todoRepository.add(req.body);
     res.json(result);
 });
 
 router.delete('/:id', async (req, res) => {
-    const result = await userRepository.findOne(req.params.id);
+    const result = await todoRepository.findOne(req.params.id);
     res.json(result);
 });
 
 router.put('/:id', async (req, res) => {
-    const result = await userRepository.update(req.params.id, req.body);
+    const result = await todoRepository.update(req.params.id, req.body);
     res.json(result);
 });
 

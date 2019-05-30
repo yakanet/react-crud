@@ -1,10 +1,10 @@
-export class User {
+export class Todo {
 
     constructor(
         public id?: number,
         public name?: string,
-        public email?: string,
-        public password?: string
+        public archived?: boolean,
+        public dueDate?: Date
     ) {}
 
     toString() {
