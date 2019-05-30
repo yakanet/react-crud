@@ -15,13 +15,13 @@ export default function Header(props: Props) {
 
     return (
         <div>
-            <header className='header'>
+            <header className="header">
                 <span>
-                    <Link to='/'>{name}</Link>
+                    <Link to="/">{name}</Link>
                 </span>
                 <ul>
-                    <li><Link to='/todo'>CRUD TODO</Link></li>
-                    <li><Link to='/comment'>CRUD COMMENTS</Link></li>
+                    <li><Link to="/todo">CRUD TODO</Link></li>
+                    <li><Link to="/comment">CRUD COMMENTS</Link></li>
                 </ul>
                 <input value={name} onChange={handleNameChanged}/>
             </header>

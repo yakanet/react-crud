@@ -16,13 +16,15 @@
     "react-scripts": "3.0.1",
     "tslint": "^5.16.0",
     "tslint-react": "^4.0.0",
+    "tslint-react-hooks": "^2.1.0",
     "typescript": "3.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "tslint --project . --force"
   },
   "eslintConfig": {
     "extends": "react-app"
