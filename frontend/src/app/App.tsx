@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
 import Header from './components/header/Header';
-import Comment from './pages/comment/Comment';
+import Contact from './pages/contact/Contact';
 import Todo from './pages/todo/Todo';
 
 const App: React.FC = () => {
@@ -11,7 +11,7 @@ const App: React.FC = () => {
             <Header/>
             <Switch>
                 <Route path="/todo" component={Todo}/>
-                <Route path="/comment" component={Comment}/>
+                <Route path="/contact" component={Contact}/>
             </Switch>
         </BrowserRouter>
     );

@@ -6,6 +6,6 @@ interface Props {
 
 export default function Todo(props: Props) {
     return (
-        <h2>Comments</h2>
+        <h2>Todos</h2>
     );
 }

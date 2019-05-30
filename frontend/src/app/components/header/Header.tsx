@@ -21,7 +21,7 @@ export default function Header(props: Props) {
                 </span>
                 <ul>
                     <li><Link to="/todo">CRUD TODO</Link></li>
-                    <li><Link to="/comment">CRUD COMMENTS</Link></li>
+                    <li><Link to="/contact">CRUD CONTACT</Link></li>
                 </ul>
                 <input value={name} onChange={handleNameChanged}/>
             </header>

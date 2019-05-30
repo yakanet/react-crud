@@ -4,8 +4,8 @@ interface Props {
 
 }
 
-export default function Comment(props: Props) {
+export default function Contact(props: Props) {
     return (
-        <h2>Comments</h2>
+        <h2>Contacts</h2>
     );
 }
