@@ -1,6 +1,13 @@
 import * as React from 'react';
 import {ChangeEvent, useEffect, useState} from 'react';
 import {ITodo} from '../../model/todo.model';
+import CardContent from '@material-ui/core/CardContent';
+import Card from '@material-ui/core/Card';
+import TextField from '@material-ui/core/TextField';
+import {CardActions, Checkbox} from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@material-ui/core/Button';
+import Switch from '@material-ui/core/Switch';
 
 interface Props {
     todo: ITodo;
@@ -27,7 +34,7 @@ export default function TodoEdit(props: Props) {
 
 
     function handleCreateOrUpdate() {
-        if(!todo.id) {
+        if (!todo.id) {
             props.onCreate(todo);
         } else {
             props.onUpdate(todo);
@@ -35,18 +42,35 @@ export default function TodoEdit(props: Props) {
     }
 
     return (
-        <div>
-            <div>
-                <label htmlFor="name">Name</label>
-                <input type="text" name="name" id="name" value={todo.name} onChange={handleInputChange}/>
-            </div>
-            <div>
-                <label htmlFor="archived">Archived</label>
-                <input type="checkbox" name="archived" id="archived" checked={todo.archived} onChange={handleCheckboxChange}/>
-            </div>
-            <button onClick={handleCreateOrUpdate}>
-                {todo.id ? 'Update' : 'Create'}
-            </button>
-        </div>
+        <Card>
+            <CardContent>
+                <div>
+                    <TextField
+                        label="Name"
+                        name="name"
+                        value={todo.name}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <div>
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                name="archived"
+                                checked={!!todo.archived}
+                                onChange={handleCheckboxChange}
+                                value="1"
+                            />
+                        }
+                        label="Archived"
+                    />
+                </div>
+            </CardContent>
+            <CardActions>
+                <Button onClick={handleCreateOrUpdate}>
+                    {todo.id ? 'Update' : 'Create'}
+                </Button>
+            </CardActions>
+        </Card>
     );
 }

@@ -1,6 +1,12 @@
 import * as React from 'react';
 import {ChangeEvent, useEffect, useState} from 'react';
 import {IContact} from '../../model/contact.model';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import {CardActions} from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 interface Props {
     contact: IContact;
@@ -21,7 +27,7 @@ export default function ContactEdit(props: Props) {
     };
 
     function handleCreateOrUpdate() {
-        if(!contact.id) {
+        if (!contact.id) {
             props.onCreate(contact);
         } else {
             props.onUpdate(contact);
@@ -29,18 +35,32 @@ export default function ContactEdit(props: Props) {
     }
 
     return (
-        <div>
-            <div>
-                <label htmlFor="name">Name</label>
-                <input type="text" name="name" id="name" value={contact.name} onChange={handleInputChange}/>
-            </div>
-            <div>
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" id="email" value={contact.email} onChange={handleInputChange}/>
-            </div>
-            <button onClick={handleCreateOrUpdate}>
-                {contact.id ? 'Update' : 'Create'}
-            </button>
-        </div>
+        <Card>
+            <CardContent>
+                <div>
+                    <TextField
+                        label="Name"
+                        name="name"
+                        value={contact.name}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <div>
+                    <TextField
+                        type="email"
+                        label="Email"
+                        name="email"
+                        value={contact.email}
+                        onChange={handleInputChange}
+                    />
+                </div>
+
+            </CardContent>
+            <CardActions>
+                <Button onClick={handleCreateOrUpdate}>
+                    {contact.id ? 'Update' : 'Create'}
+                </Button>
+            </CardActions>
+        </Card>
     );
 }
