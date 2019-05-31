@@ -6,12 +6,8 @@ import {useFetch} from '../../utils/hooks';
 import ContactEdit from '../../components/contact-edit/ContactEdit';
 import {CrudRepository} from '../../utils/repository';
 
-interface Props {
 
-}
-
-
-export default function Contact(props: Props) {
+export default function Contact() {
     const [contacts, setContacts] = useState<IContact[]>([]);
     const [editableContact, setEditableContact] = useState(emptyContact());
     const contactRepository = new CrudRepository<IContact>('contact');
@@ -45,7 +41,6 @@ export default function Contact(props: Props) {
                     />
                     <button onClick={() => deleteContact(contact)}>X</button>
                 </div>)}
-
         </div>
     );
 }

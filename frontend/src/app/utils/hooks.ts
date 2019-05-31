@@ -7,5 +7,5 @@ export function useFetch<T>(url: string, callback: (data: T) => void) {
             const data = await res.json();
             callback(data);
         })();
-    }, []);
+    }, [url]);
 }

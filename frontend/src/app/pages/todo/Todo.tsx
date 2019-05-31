@@ -6,14 +6,10 @@ import TodoItem from '../../components/todo-item/TodoItem';
 import {CrudRepository} from '../../utils/repository';
 import TodoEdit from '../../components/todo-edit/TodoEdit';
 
-interface Props {
 
-}
-
-export default function Todo(props: Props) {
+export default function Todo() {
     const [todos, setTodos] = useState<ITodo[]>([]);
     const [editableTodo, setEditableTodo] = useState(emptyTodo());
-
     const todoRepository = new CrudRepository<ITodo>('todo');
 
     useFetch<ITodo[]>(todoRepository.baseUrl, data => setTodos(data));
@@ -36,8 +32,16 @@ export default function Todo(props: Props) {
             <button onClick={() => setEditableTodo(emptyTodo())}>New Todo</button>
             <TodoEdit todo={editableTodo} onCreate={createTodo} onUpdate={updateTodo}/>
 
-
-            {todos.map(todo => <TodoItem key={todo.id} todo={todo}/>)}
+            <hr/>
+            {todos.map(todo =>
+                <div key={todo.id}>
+                    <TodoItem
+                        onSelect={setEditableTodo}
+                        todo={todo}
+                    />
+                    <button onClick={() => deleteTodo(todo)}>X</button>
+                </div>
+            )}
         </div>
     );
 }
