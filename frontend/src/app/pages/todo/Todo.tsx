@@ -37,8 +37,7 @@ export default function Todo() {
             <button onClick={resetEditableTodo}>New Todo</button>
             <TodoEdit todo={editableTodo} onCreate={createTodo} onUpdate={updateTodo}/>
 
-            <hr/>
-            <TransitionGroup className="todo-list">
+            <TransitionGroup>
                 {todos.map(todo =>
                     <CSSTransition
                         timeout={500}

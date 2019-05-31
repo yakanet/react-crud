@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     //         public creationDate?
     return knex.schema.createTableIfNotExists('contacts', function(table) {
         table.increments();
-        table.string('name').notNullable().unique();
+        table.string('name').notNullable();
         table.string('email').notNullable();
     });
 };

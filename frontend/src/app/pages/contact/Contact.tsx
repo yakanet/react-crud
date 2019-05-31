@@ -5,6 +5,7 @@ import ContactItem from '../../components/contact-item/ContactItem';
 import {useFetch} from '../../utils/hooks';
 import ContactEdit from '../../components/contact-edit/ContactEdit';
 import {CrudRepository} from '../../utils/repository';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 
 export default function Contact() {
@@ -13,6 +14,10 @@ export default function Contact() {
     const contactRepository = new CrudRepository<IContact>('contact');
 
     useFetch<IContact[]>(contactRepository.baseUrl, data => setContacts(data));
+
+    function resetEditableContact() {
+        setEditableContact(emptyContact());
+    }
 
     async function createContact(contact: IContact) {
         setContacts(await contactRepository.create(contact, contacts))
@@ -29,18 +34,24 @@ export default function Contact() {
     return (
         <div>
             <h2>Contacts</h2>
-            <button onClick={() => setEditableContact(emptyContact())}>New Contact</button>
+            <button onClick={resetEditableContact}>New Contact</button>
             <ContactEdit contact={editableContact} onCreate={createContact} onUpdate={updateContact}/>
 
-            <hr/>
-            {contacts.map(contact =>
-                <div key={contact.id}>
-                    <ContactItem
-                        onSelect={setEditableContact}
-                        contact={contact}
-                    />
-                    <button onClick={() => deleteContact(contact)}>X</button>
-                </div>)}
+            <TransitionGroup>
+                {contacts.map(contact =>
+                    <CSSTransition
+                        timeout={500}
+                        key={contact.id}
+                        classNames="item"
+                    >
+                        <ContactItem
+                            onSelect={setEditableContact}
+                            onDelete={deleteContact}
+                            contact={contact}
+                        />
+                    </CSSTransition>
+                )}
+            </TransitionGroup>
         </div>
     );
 }
