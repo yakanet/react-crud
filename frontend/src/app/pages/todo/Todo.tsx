@@ -5,6 +5,7 @@ import {emptyTodo, ITodo} from '../../model/todo.model';
 import TodoItem from '../../components/todo-item/TodoItem';
 import {CrudRepository} from '../../utils/repository';
 import TodoEdit from '../../components/todo-edit/TodoEdit';
+import {CSSTransition, TransitionGroup} from 'react-transition-group'; // ES6
 
 
 export default function Todo() {
@@ -13,6 +14,10 @@ export default function Todo() {
     const todoRepository = new CrudRepository<ITodo>('todo');
 
     useFetch<ITodo[]>(todoRepository.baseUrl, data => setTodos(data));
+
+    function resetEditableTodo(){
+        setEditableTodo(emptyTodo());
+    }
 
     async function createTodo(todo: ITodo) {
         setTodos(await todoRepository.create(todo, todos))
@@ -29,19 +34,25 @@ export default function Todo() {
     return (
         <div>
             <h2>Todos</h2>
-            <button onClick={() => setEditableTodo(emptyTodo())}>New Todo</button>
+            <button onClick={resetEditableTodo}>New Todo</button>
             <TodoEdit todo={editableTodo} onCreate={createTodo} onUpdate={updateTodo}/>
 
             <hr/>
-            {todos.map(todo =>
-                <div key={todo.id}>
-                    <TodoItem
-                        onSelect={setEditableTodo}
-                        todo={todo}
-                    />
-                    <button onClick={() => deleteTodo(todo)}>X</button>
-                </div>
-            )}
+            <TransitionGroup className="todo-list">
+                {todos.map(todo =>
+                    <CSSTransition
+                        timeout={500}
+                        key={todo.id}
+                        classNames="item"
+                    >
+                        <TodoItem
+                            onSelect={setEditableTodo}
+                            onDelete={deleteTodo}
+                            todo={todo}
+                        />
+                    </CSSTransition>
+                )}
+            </TransitionGroup>
         </div>
     );
 }
