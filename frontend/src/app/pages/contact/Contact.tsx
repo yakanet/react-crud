@@ -11,11 +11,9 @@ import {List} from '@material-ui/core';
 
 
 export default function Contact() {
-    const [contacts, setContacts] = useState<IContact[]>([]);
-    const [editableContact, setEditableContact] = useState(emptyContact());
     const contactRepository = new CrudRepository<IContact>('contact');
-
-    useFetch<IContact[]>(contactRepository.baseUrl, data => setContacts(data));
+    const [contacts, setContacts] = useFetch<IContact>(contactRepository.baseUrl);
+    const [editableContact, setEditableContact] = useState(emptyContact());
 
     function resetEditableContact() {
         setEditableContact(emptyContact());

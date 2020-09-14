@@ -11,11 +11,9 @@ import Typography from '@material-ui/core/Typography'; // ES6
 
 
 export default function Todo() {
-    const [todos, setTodos] = useState<ITodo[]>([]);
-    const [editableTodo, setEditableTodo] = useState(emptyTodo());
     const todoRepository = new CrudRepository<ITodo>('todo');
-
-    useFetch<ITodo[]>(todoRepository.baseUrl, data => setTodos(data));
+    const [todos, setTodos] = useFetch<ITodo>(todoRepository.baseUrl);
+    const [editableTodo, setEditableTodo] = useState(emptyTodo());
 
     function resetEditableTodo() {
         setEditableTodo(emptyTodo());

@@ -26,8 +26,8 @@ export default function SimpleItem<T>(props: Props<T>) {
                 primary={props.value[props.primary]}
                 secondary={props.secondary ? props.value[props.secondary] : null}
             />
-            <Button title="Edit" onClick={onSelect}>🖊</Button>
-            <Button title="Delete" onClick={onDelete}>❌</Button>
+            <Button title="Edit" onClick={onSelect}><span role="img" aria-label="edit">🖊</span></Button>
+            <Button title="Delete" onClick={onDelete}><span role="img" aria-label="delete">❌</span></Button>
         </ListItem>
     );
 }

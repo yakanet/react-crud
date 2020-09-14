@@ -4,7 +4,7 @@ import {ITodo} from '../../model/todo.model';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
-import {CardActions, Checkbox} from '@material-ui/core';
+import {CardActions} from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import Switch from '@material-ui/core/Switch';

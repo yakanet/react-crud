@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {ChangeEvent, useEffect, useState} from 'react';
 import {IContact} from '../../model/contact.model';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
